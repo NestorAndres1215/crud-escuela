@@ -22,6 +22,21 @@ type Query {
     obtenerAulaPorId(id: ID!): Aula
     buscarAulaPorAula(aula: String!): [Aula!]!
     buscarAulaPorAforo(aforo: String!): [Aula!]!
+
+    # Curso
+    obtenerCurso: [Curso!]!
+    obtenerCursoPorId(id: ID!): Curso
+    buscarCursoPorCurso(curso: String!): [Curso!]!
+
+    # Notas
+    obtenerNotas: [Nota!]!
+    obtenerNotaPorId(id: ID!): Nota
+    buscarNotasPorAlumno(alumno: String!): [Nota!]!
+    buscarNotasPorCurso(curso: String!): [Nota!]!
+    buscarNotasPorDocente(docente: String!): [Nota!]!
+    buscarNotasPorAlumnoYCurso(alumno: String!, curso: String!): [Nota!]!
+    buscarNotasMenorIgual(notaMaxima: Int!): [Nota!]!
+
 }
 
 type Mutation {
@@ -39,4 +54,14 @@ type Mutation {
     crearAula(aula: AulaInput!): Aula!
     actualizarAula(id: ID!, docente: AulaInput!): Aula!
     eliminarAula(id: ID!): String!
+
+    # Curso
+    crearCurso(curso: CursoInput!): Curso!
+    actualizarCurso(id: ID!, docente: CursoInput!): Curso!
+    eliminarCurso(id: ID!): String!
+
+    # Notas
+    crearNota(nota: NotaInput!): Nota!
+    actualizarNota(id: ID!, nota: NotaInput!): Nota!
+    eliminarNota(id: ID!): String!
 }

@@ -1,16 +1,13 @@
 package com.crud.escuela.service.impl;
 
 import com.crud.escuela.dto.CursoRequest;
-import com.crud.escuela.entity.Aula;
 import com.crud.escuela.entity.Curso;
-import com.crud.escuela.entity.Docente;
 import com.crud.escuela.exception.BadRequestException;
 import com.crud.escuela.exception.ConflictException;
 import com.crud.escuela.repository.CursoRepository;
 import com.crud.escuela.service.CursoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

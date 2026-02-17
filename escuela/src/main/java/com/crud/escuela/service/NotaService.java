@@ -1,16 +1,17 @@
-package com.crud.escuela.repository;
+package com.crud.escuela.service;
 
+import com.crud.escuela.dto.AlumnoRequest;
+import com.crud.escuela.dto.NotaRequest;
 import com.crud.escuela.entity.Alumno;
 import com.crud.escuela.entity.Curso;
 import com.crud.escuela.entity.Docente;
 import com.crud.escuela.entity.Nota;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 import java.util.Optional;
 
+public interface NotaService {
 
-public interface NotaRepository extends JpaRepository<Nota,Long> {
+    List<Nota> findAll();
 
     Optional<Nota> findById(Long id);
 
@@ -24,4 +25,9 @@ public interface NotaRepository extends JpaRepository<Nota,Long> {
 
     List<Nota> findByExamenFinalLessThanEqual(int notaMaxima);
 
+    Nota save(NotaRequest alumno);
+
+    Nota update(Long id , NotaRequest alumno);
+
+    void delete(Long id);
 }

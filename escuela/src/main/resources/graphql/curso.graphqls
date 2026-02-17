@@ -1,0 +1,11 @@
+type Curso {
+    id: ID!
+    curso: String!
+    credito: String!
+
+}
+
+input CursoInput {
+    curso: String!
+    credito: String!
+}

@@ -1,0 +1,20 @@
+
+type Nota {
+    id: ID!
+    alumno: String!
+    curso: String!
+    aula: String!
+    docente: String!
+    practicas: Int!
+    parcial: Int!
+    examenFinal: Int!
+}
+
+input NotaInput {
+    alumno: String!
+    curso: String!
+    aula: String!
+    docente: String!
+    practicas: Int!
+    parcial: Int!
+}
