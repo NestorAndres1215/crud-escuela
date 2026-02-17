@@ -1,0 +1,16 @@
+
+
+type Alumno {
+    id: ID!
+    nombre: String!
+    apellido: String!
+    email: String!
+    telefono: String!
+}
+
+input AlumnoInput {
+    nombre: String!
+    apellido: String!
+    email: String!
+    telefono: String!
+}

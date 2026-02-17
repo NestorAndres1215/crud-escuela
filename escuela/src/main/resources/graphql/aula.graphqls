@@ -1,0 +1,14 @@
+
+
+type Aula {
+    id: ID!
+    aula: String!
+    aforo: String!
+
+}
+
+input AulaInput {
+    aula: String!
+    aforo: String!
+
+}

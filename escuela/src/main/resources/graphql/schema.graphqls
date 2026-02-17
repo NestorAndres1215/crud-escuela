@@ -1,0 +1,42 @@
+type Query {
+    # Alumno
+    obtenerAlumnos: [Alumno!]!
+    obtenerAlumnoPorId(id: ID!): Alumno
+    buscarAlumnosPorNombre(nombre: String!): [Alumno!]!
+    buscarAlumnosPorApellido(apellido: String!): [Alumno!]!
+    buscarAlumnosPorEmail(email: String!): [Alumno!]!
+    buscarAlumnosPorTelefono(telefono: String!): [Alumno!]!
+    buscarAlumnosPorNombreYApellido(nombre: String!, apellido: String!): [Alumno!]!
+
+    # Docente
+    obtenerDocentes: [Docente!]!
+    obtenerDocentePorId(id: ID!): Docente
+    buscarDocentesPorNombre(nombre: String!): [Docente!]!
+    buscarDocentesPorApellido(apellido: String!): [Docente!]!
+    buscarDocentesPorCorreo(correo: String!): [Docente!]!
+    buscarDocentesPorTelefono(telefono: String!): [Docente!]!
+    buscarDocentesPorNombreYApellido(nombre: String!, apellido: String!): [Docente!]!
+
+    # Aula
+    obtenerAula: [Aula!]!
+    obtenerAulaPorId(id: ID!): Aula
+    buscarAulaPorAula(aula: String!): [Aula!]!
+    buscarAulaPorAforo(aforo: String!): [Aula!]!
+}
+
+type Mutation {
+    # Alumno
+    crearAlumno(alumno: AlumnoInput!): Alumno!
+    actualizarAlumno(id: ID!, alumno: AlumnoInput!): Alumno!
+    eliminarAlumno(id: ID!): String!
+
+    # Docente
+    crearDocente(docente: DocenteInput!): Docente!
+    actualizarDocente(id: ID!, docente: DocenteInput!): Docente!
+    eliminarDocente(id: ID!): String!
+
+    # Aula
+    crearAula(aula: AulaInput!): Aula!
+    actualizarAula(id: ID!, docente: AulaInput!): Aula!
+    eliminarAula(id: ID!): String!
+}

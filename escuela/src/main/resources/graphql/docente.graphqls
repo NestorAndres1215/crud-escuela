@@ -1,0 +1,14 @@
+type Docente {
+    id: ID!
+    nombre: String!
+    apellido: String!
+    correo: String!
+    telefono: String!
+}
+
+input DocenteInput {
+    nombre: String!
+    apellido: String!
+    email: String!
+    telefono: String!
+}
