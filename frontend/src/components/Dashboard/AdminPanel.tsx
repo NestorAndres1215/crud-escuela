@@ -1,122 +1,74 @@
-import React, { useState } from 'react';
-import ListaAlumnos from '../Alumno/ListaAlumnos';
-import ListaDocentes from '../Docente/ListaDocentes';
-import ListaAulas from '../Aula/ListaAula';
-import ListaNotas from '../Nota/ListaNota';
-import ListaCursos from '../Curso/ListaCursos';
+import React from 'react';
+import { Routes, Route, Navigate, NavLink } from 'react-router-dom';
+
 import Home from '../Home/Home';
-
-
-type MenuOption = 'inicio' | 'alumnos' | 'docentes' | 'aulas' | 'cursos' | 'notas';
+import ListaAlumnos from '../Alumno/ListaAlumnos';
+import FormularioAlumno from '../Alumno/FormularioAlumno';
+import ActualizarAlumno from '../Alumno/ActualizarAlumno';
 
 const AdminPanel: React.FC = () => {
-  const [menu, setMenu] = useState<MenuOption>('inicio');
-
-  const sidebarStyle: React.CSSProperties = {
-    width: '240px',
-    backgroundColor: '#0B3D91',
-    borderRight: '1px solid #dee2e6',
-    padding: '1.5rem 1rem',
-    height: '100vh',
-    position: 'sticky',
-    top: 0,
-    overflowY: 'auto',
-  };
-
-  const navTitleStyle: React.CSSProperties = {
-    fontSize: '1.5rem',
-    marginBottom: '1.5rem',
-    color: '#ffffff',
-    fontWeight: 600,
-  };
-
-  const menuItemStyle: React.CSSProperties = {
-    listStyle: 'none',
-    margin: '0.5rem 0',
-  };
-
-  const buttonStyle = (isActive: boolean): React.CSSProperties => ({
-    width: '100%',
-    padding: '0.75rem 1rem',
-    textAlign: 'left',
-    backgroundColor: isActive ? '#e9ecef' : 'transparent',
-    border: 'none',
-    borderRadius: '6px',
-    fontSize: '1.05rem',
-    cursor: 'pointer',
-    transition: 'all 0.2s ease',
-    color: isActive ? '#0B3D91' : '#ffffff',
-    fontWeight: isActive ? 600 : 400,
-  });
-
-  const mainStyle: React.CSSProperties = {
-    flex: 1,
-    padding: '2rem',
-    backgroundColor: '#ffffff',
-  };
-
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f1f3f5' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', fontFamily: 'Arial, sans-serif' }}>
+      
       {/* Sidebar */}
-      <nav style={sidebarStyle}>
-        <h2 style={navTitleStyle}>Administrador</h2>
-        <ul style={{ padding: 0, margin: 0 }}>
-          <li style={menuItemStyle}>
-            <button onClick={() => setMenu('inicio')} style={buttonStyle(menu === 'inicio')}>Inicio</button>
-          </li>
-          <li style={menuItemStyle}>
-            <button onClick={() => setMenu('alumnos')} style={buttonStyle(menu === 'alumnos')}>Alumnos</button>
-          </li>
-          <li style={menuItemStyle}>
-            <button onClick={() => setMenu('docentes')} style={buttonStyle(menu === 'docentes')}>Docentes</button>
-          </li>
-          <li style={menuItemStyle}>
-            <button onClick={() => setMenu('aulas')} style={buttonStyle(menu === 'aulas')}>Aulas</button>
-          </li>
-          <li style={menuItemStyle}>
-            <button onClick={() => setMenu('cursos')} style={buttonStyle(menu === 'cursos')}>Cursos</button>
-          </li>
-          <li style={menuItemStyle}>
-            <button onClick={() => setMenu('notas')} style={buttonStyle(menu === 'notas')}>Notas</button>
-          </li>
-        </ul>
-      </nav>
-      <main style={mainStyle}>
-        {menu === 'inicio' && (
-          <>
-            <Home/>
-          </>
-        )}
-        {menu === 'alumnos' && (
-          <>
-            <ListaAlumnos />
-          </>
-        )}
+      <aside
+        style={{
+          width: '220px',
+          backgroundColor: '#0B3D91',
+          padding: '2rem 1rem',
+          color: 'white',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.5rem'
+        }}
+      >
+        <h2 style={{ marginBottom: '2rem', fontSize: '1.8rem', textAlign: 'center' }}>Administrador</h2>
 
-        {menu === 'docentes' && (
-          <>
-            <ListaDocentes />
-          </>
-        )}
+        <NavLink
+          to="/"
+          style={({ isActive }) => ({
+            color: 'white',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.5rem',
+            backgroundColor: isActive ? '#062663' : 'transparent',
+            textDecoration: 'none',
+            fontWeight: isActive ? 'bold' : 'normal'
+          })}
+        >
+          Inicio
+        </NavLink>
 
-        {menu === 'aulas' && (
-          <>
+        <NavLink
+          to="/alumnos"
+          style={({ isActive }) => ({
+            color: 'white',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.5rem',
+            backgroundColor: isActive ? '#062663' : 'transparent',
+            textDecoration: 'none',
+            fontWeight: isActive ? 'bold' : 'normal'
+          })}
+        >
+          Alumnos
+        </NavLink>
 
-            <ListaAulas />
-          </>
-        )}
+      </aside>
 
-        {menu === 'cursos' && (
-          <>
-            <ListaCursos />
-          </>
-        )}
-
-        {menu === 'notas' && (
-          <>
-            <ListaNotas />
-          </>
-        )}
+      {/* Contenido */}
+      <main style={{
+        flex: 1,
+        padding: '2rem',
+        backgroundColor: '#f4f5f7',
+        borderRadius: '0 1rem 1rem 0',
+        boxShadow: 'inset 0 0 10px rgba(0,0,0,0.03)'
+      }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/alumnos" element={<ListaAlumnos />} />
+          <Route path="/alumnos/nuevo" element={<FormularioAlumno />} />
+          <Route path="/alumnos/editar/:id" element={<ActualizarAlumno />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
     </div>
   );

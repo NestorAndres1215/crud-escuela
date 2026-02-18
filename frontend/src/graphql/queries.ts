@@ -12,6 +12,18 @@ export const OBTENER_ALUMNOS = gql`
   }
 `;
 
+export const OBTENER_ALUMNO_POR_ID = gql`
+  query ObtenerAlumnoPorId($id: ID!) {
+    obtenerAlumnoPorId(id: $id) {
+      id
+      nombre
+      apellido
+      email
+      telefono
+    }
+  }
+`;
+
 export const OBTENER_DOCENTES = gql`
   query ObtenerDocentes {
     obtenerDocentes {
