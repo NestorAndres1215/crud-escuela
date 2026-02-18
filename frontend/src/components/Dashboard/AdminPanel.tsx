@@ -11,6 +11,8 @@ import FormularioDocente from '../Docente/FormularioDocente';
 import ListaAulas from '../Aula/ListaAula';
 import FormularioAula from '../Aula/FormularioAula';
 import ActualizarAula from '../Aula/ActualizarAula';
+import ListaCursos from '../Curso/ListaCursos';
+import FormularioCurso from '../Curso/FormularioCurso';
 
 const AdminPanel: React.FC = () => {
   return (
@@ -131,6 +133,9 @@ const AdminPanel: React.FC = () => {
           <Route path="/aulas" element={<ListaAulas />} />
           <Route path="/aulas/nuevo" element={<FormularioAula />} />
           <Route path="/aulas/editar/:id" element={<ActualizarAula />} />
+          <Route path="/cursos" element={<ListaCursos />} />
+          <Route path="/cursos/nuevo" element={<FormularioCurso />} />
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

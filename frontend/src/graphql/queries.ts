@@ -74,6 +74,7 @@ export const OBTENER_CURSOS = gql`
     obtenerCurso {
       id
       curso
+      credito
     }
   }
 `;

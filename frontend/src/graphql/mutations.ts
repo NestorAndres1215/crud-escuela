@@ -33,7 +33,15 @@ export const CREAR_AULA = gql`
     }
   }
 `;
-
+export const CREAR_CURSOS = gql`
+  mutation CrearCurso($curso: CursoInput!) {
+    crearCurso(curso: $curso) {
+      id
+      curso
+      credito
+    }
+  }
+`;
 
 export const ACTUALIZAR_ALUMNO = gql`
   mutation ActualizarAlumno($id: ID!, $alumno: AlumnoInput!) {
@@ -64,6 +72,15 @@ export const ACTUALIZAR_AULA = gql`
       id
       aula
       aforo
+    }
+  }
+`;
+export const ACTUALIZAR_CURSOS = gql`
+  mutation ActualizarCurso($id: ID!, $curso: CursoInput!) {
+    actualizarAula(id: $id, curso: $curso) {
+      id
+      curso
+      credito
     }
   }
 `;

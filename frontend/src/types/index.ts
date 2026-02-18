@@ -23,6 +23,7 @@ export interface Aula {
 export interface Curso {
   id: string;
   curso: string;
+  credito:string;
 }
 
 export interface Nota {
