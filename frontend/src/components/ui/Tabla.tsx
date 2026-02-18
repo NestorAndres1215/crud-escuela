@@ -18,6 +18,7 @@ const Tabla: React.FC<TablaProps> = ({ headers, children }) => {
           borderRadius: '8px',
           overflow: 'hidden',
           boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+          textAlign: 'center', // 🔥 centra TODO
         }}
       >
         <thead style={{ backgroundColor: '#0B3D91', color: 'white' }}>
@@ -27,7 +28,6 @@ const Tabla: React.FC<TablaProps> = ({ headers, children }) => {
                 key={index}
                 style={{
                   padding: '12px',
-                  textAlign: 'left',
                   fontWeight: 600,
                 }}
               >
@@ -43,7 +43,6 @@ const Tabla: React.FC<TablaProps> = ({ headers, children }) => {
               <td
                 colSpan={headers.length}
                 style={{
-                  textAlign: 'center',
                   padding: '30px',
                   color: '#888',
                 }}
@@ -55,7 +54,11 @@ const Tabla: React.FC<TablaProps> = ({ headers, children }) => {
               </td>
             </tr>
           ) : (
-            children
+            React.Children.map(children, (child) =>
+              React.cloneElement(child as React.ReactElement, {
+                style: { textAlign: 'center' }, 
+              })
+            )
           )}
         </tbody>
       </table>

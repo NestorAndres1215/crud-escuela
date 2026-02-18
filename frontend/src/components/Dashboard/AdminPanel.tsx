@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import ListaAlumnos from '../Alumno/ListaAlumnos';
-import FormularioAlumno from '../Alumno/FormularioAlumno';
 import ListaDocentes from '../Docente/ListaDocentes';
 import ListaAulas from '../Aula/ListaAula';
 import ListaNotas from '../Nota/ListaNota';
 import ListaCursos from '../Curso/ListaCursos';
+import Home from '../Home/Home';
 
 
-type MenuOption = 'alumnos' | 'docentes' | 'aulas' | 'cursos' | 'notas';
+type MenuOption = 'inicio' | 'alumnos' | 'docentes' | 'aulas' | 'cursos' | 'notas';
 
 const AdminPanel: React.FC = () => {
-  const [menu, setMenu] = useState<MenuOption>('alumnos');
+  const [menu, setMenu] = useState<MenuOption>('inicio');
 
   const sidebarStyle: React.CSSProperties = {
     width: '240px',
@@ -62,6 +62,9 @@ const AdminPanel: React.FC = () => {
         <h2 style={navTitleStyle}>Administrador</h2>
         <ul style={{ padding: 0, margin: 0 }}>
           <li style={menuItemStyle}>
+            <button onClick={() => setMenu('inicio')} style={buttonStyle(menu === 'inicio')}>Inicio</button>
+          </li>
+          <li style={menuItemStyle}>
             <button onClick={() => setMenu('alumnos')} style={buttonStyle(menu === 'alumnos')}>Alumnos</button>
           </li>
           <li style={menuItemStyle}>
@@ -79,6 +82,11 @@ const AdminPanel: React.FC = () => {
         </ul>
       </nav>
       <main style={mainStyle}>
+        {menu === 'inicio' && (
+          <>
+            <Home/>
+          </>
+        )}
         {menu === 'alumnos' && (
           <>
             <ListaAlumnos />
