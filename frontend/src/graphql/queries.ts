@@ -23,6 +23,17 @@ export const OBTENER_ALUMNO_POR_ID = gql`
     }
   }
 `;
+export const OBTENER_DOCENTE_POR_ID = gql`
+  query obtenerDocentePorId($id: ID!) {
+    obtenerDocentePorId(id: $id) {
+      id
+      nombre
+      apellido
+      correo
+      telefono
+    }
+  }
+`;
 
 export const OBTENER_DOCENTES = gql`
   query ObtenerDocentes {

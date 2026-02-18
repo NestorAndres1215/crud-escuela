@@ -29,12 +29,12 @@ const ActualizarAlumno: React.FC = () => {
   const { data, loading, error } = useQuery(OBTENER_ALUMNO_POR_ID, {
     variables: { id },
     skip: !id,
-    fetchPolicy: 'network-only', 
+    fetchPolicy: 'network-only',
   });
 
   const [actualizarAlumno, { loading: updating }] = useMutation(ACTUALIZAR_ALUMNO);
 
- 
+
   useEffect(() => {
     if (data?.obtenerAlumnoPorId) {
       const { nombre, apellido, email, telefono } = data.obtenerAlumnoPorId;
@@ -54,10 +54,10 @@ const ActualizarAlumno: React.FC = () => {
 
     try {
       await actualizarAlumno({
-        variables: { id, alumno }, 
+        variables: { id, alumno },
       });
 
-      navigate('/alumnos'); 
+      navigate('/alumnos');
 
     } catch (err) {
       console.error('Error al actualizar alumno:', err);

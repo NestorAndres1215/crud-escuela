@@ -12,6 +12,19 @@ export const CREAR_ALUMNO = gql`
   }
 `;
 
+export const CREAR_DOCENTE = gql`
+  mutation CrearDocente($docente: DocenteInput!) {
+    crearDocente(docente: $docente) {
+      id
+      nombre
+      apellido
+      correo
+      telefono
+    }
+  }
+`;
+
+
 export const ACTUALIZAR_ALUMNO = gql`
   mutation ActualizarAlumno($id: ID!, $alumno: AlumnoInput!) {
     actualizarAlumno(id: $id, alumno: $alumno) {
@@ -19,6 +32,17 @@ export const ACTUALIZAR_ALUMNO = gql`
       nombre
       apellido
       email
+      telefono
+    }
+  }
+`;
+export const ACTUALIZAR_DOCENTE = gql`
+  mutation ActualizarDocente($id: ID!, $docente: DocenteInput!) {
+    actualizarDocente(id: $id, docente: $docente) {
+      id
+      nombre
+      apellido
+      correo
       telefono
     }
   }

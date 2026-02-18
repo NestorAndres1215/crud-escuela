@@ -14,11 +14,7 @@ import Button from '../ui/Boton';
 
 const ITEMS_POR_PAGINA = 5;
 
-interface Props {
-    irARegistrar: () => void;
-}
-
-const ListaAlumnos: React.FC<Props> = ({ irARegistrar }) => {
+const ListaAlumnos: React.FC = ()  => {
     const navigate = useNavigate();
 
     const { loading, error, data, refetch } = useQuery<{ obtenerAlumnos: Alumno[] }>(OBTENER_ALUMNOS);
@@ -30,6 +26,7 @@ const ListaAlumnos: React.FC<Props> = ({ irARegistrar }) => {
     if (error) return <p>Error: {error.message}</p>;
 
     const handleEliminar = async (id: string) => {
+        if (!window.confirm('¿Estás seguro de eliminar este alumno?')) return;
         await eliminarAlumno({ variables: { id } });
         refetch();
     };

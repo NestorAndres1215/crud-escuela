@@ -5,11 +5,14 @@ import Home from '../Home/Home';
 import ListaAlumnos from '../Alumno/ListaAlumnos';
 import FormularioAlumno from '../Alumno/FormularioAlumno';
 import ActualizarAlumno from '../Alumno/ActualizarAlumno';
+import ListaDocentes from '../Docente/ListaDocentes';
+import ActualizarDocente from '../Docente/ActualizarDocente';
+import FormularioDocente from '../Docente/FormularioDocente';
 
 const AdminPanel: React.FC = () => {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', fontFamily: 'Arial, sans-serif' }}>
-      
+
       {/* Sidebar */}
       <aside
         style={{
@@ -51,6 +54,19 @@ const AdminPanel: React.FC = () => {
         >
           Alumnos
         </NavLink>
+        <NavLink
+          to="/docentes"
+          style={({ isActive }) => ({
+            color: 'white',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.5rem',
+            backgroundColor: isActive ? '#062663' : 'transparent',
+            textDecoration: 'none',
+            fontWeight: isActive ? 'bold' : 'normal'
+          })}
+        >
+          Docente
+        </NavLink>
 
       </aside>
 
@@ -67,6 +83,9 @@ const AdminPanel: React.FC = () => {
           <Route path="/alumnos" element={<ListaAlumnos />} />
           <Route path="/alumnos/nuevo" element={<FormularioAlumno />} />
           <Route path="/alumnos/editar/:id" element={<ActualizarAlumno />} />
+          <Route path="/docentes" element={<ListaDocentes />} />
+          <Route path="/docentes/nuevo" element={<FormularioDocente />} />
+          <Route path="/docentes/editar/:id" element={<ActualizarDocente />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client/react';
+import { useNavigate } from 'react-router-dom';
 
 import { OBTENER_DOCENTES } from '../../graphql/queries';
+import { ELIMINAR_DOCENTE } from '../../graphql/mutations';
 
 import type { Docente } from '../../types';
 
@@ -10,11 +12,12 @@ import Tabla from '../ui/Tabla';
 import Paginacion from '../ui/Paginacion';
 import Busqueda from '../ui/Buscador';
 import Button from '../ui/Boton';
-import { ELIMINAR_DOCENTE } from '../../graphql/mutations';
 
 const ITEMS_POR_PAGINA = 5;
 
 const ListaDocentes: React.FC = () => {
+  const navigate = useNavigate();
+
   const { loading, error, data, refetch } =
     useQuery<{ obtenerDocentes: Docente[] }>(OBTENER_DOCENTES);
 
@@ -26,15 +29,15 @@ const ListaDocentes: React.FC = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   const handleEliminar = async (id: string) => {
+    if (!window.confirm('¿Estás seguro de eliminar este docente?')) return;
     await eliminarDocente({ variables: { id } });
     refetch();
   };
 
-  const docentesFiltrados = data?.obtenerDocentes.filter((d) =>
-    `${d.nombre} ${d.apellido}`
-      .toLowerCase()
-      .includes(busqueda.toLowerCase())
-  ) || [];
+  const docentesFiltrados =
+    data?.obtenerDocentes.filter((d) =>
+      `${d.nombre} ${d.apellido}`.toLowerCase().includes(busqueda.toLowerCase())
+    ) || [];
 
   const totalPaginas = Math.ceil(docentesFiltrados.length / ITEMS_POR_PAGINA);
 
@@ -47,6 +50,13 @@ const ListaDocentes: React.FC = () => {
     <div>
       <Titulo texto="Gestión de Docentes" nivel={1} />
 
+      <div style={{ marginBottom: '20px', textAlign: 'right' }}>
+        <Button variant="primary" onClick={() => navigate('/docentes/nuevo')}>
+          <i className="bi bi-person-plus" style={{ marginRight: '6px' }}></i>
+          Nuevo Docente
+        </Button>
+      </div>
+
       <Busqueda
         value={busqueda}
         onChange={(value) => {
@@ -58,18 +68,30 @@ const ListaDocentes: React.FC = () => {
       <Tabla headers={['Nombre', 'Apellido', 'Correo', 'Teléfono', 'Acciones']}>
         {docentesPaginados.map((docente) => (
           <tr key={docente.id}>
-            <td>{docente.nombre}</td>
-            <td>{docente.apellido}</td>
-            <td>{docente.correo}</td>
-            <td>{docente.telefono}</td>
-            <td>
-              <Button
-                variant="danger"
-                size="sm"
-                onClick={() => handleEliminar(docente.id)}
-              >
-                Eliminar
-              </Button>
+            <td style={{ padding: '10px' }}>{docente.nombre}</td>
+            <td style={{ padding: '10px' }}>{docente.apellido}</td>
+            <td style={{ padding: '10px' }}>{docente.correo}</td>
+            <td style={{ padding: '10px' }}>{docente.telefono}</td>
+            <td style={{ padding: '10px' }}>
+              <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+                <Button
+                  variant="warning"
+                  size="sm"
+                  onClick={() => navigate(`/docentes/editar/${docente.id}`)}
+                >
+                  <i className="bi bi-pencil-square me-2"></i>
+                  Editar
+                </Button>
+
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={() => handleEliminar(docente.id)}
+                >
+                  <i className="bi bi-trash" style={{ marginRight: '5px' }}></i>
+                  Eliminar
+                </Button>
+              </div>
             </td>
           </tr>
         ))}
