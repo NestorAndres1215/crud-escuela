@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import ListaAlumnos from '../Alumno/ListaAlumnos';
 import FormularioAlumno from '../Alumno/FormularioAlumno';
+import ListaDocentes from '../Docente/ListaDocentes';
+import ListaAulas from '../Aula/ListaAula';
+import ListaNotas from '../Nota/ListaNota';
+import ListaCursos from '../Curso/ListaCursos';
 
 
 type MenuOption = 'alumnos' | 'docentes' | 'aulas' | 'cursos' | 'notas';
@@ -10,7 +14,7 @@ const AdminPanel: React.FC = () => {
 
   const sidebarStyle: React.CSSProperties = {
     width: '240px',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#0B3D91',
     borderRight: '1px solid #dee2e6',
     padding: '1.5rem 1rem',
     height: '100vh',
@@ -22,7 +26,7 @@ const AdminPanel: React.FC = () => {
   const navTitleStyle: React.CSSProperties = {
     fontSize: '1.5rem',
     marginBottom: '1.5rem',
-    color: '#2c3e50',
+    color: '#ffffff',
     fontWeight: 600,
   };
 
@@ -41,7 +45,7 @@ const AdminPanel: React.FC = () => {
     fontSize: '1.05rem',
     cursor: 'pointer',
     transition: 'all 0.2s ease',
-    color: isActive ? '#0d6efd' : '#495057',
+    color: isActive ? '#0B3D91' : '#ffffff',
     fontWeight: isActive ? 600 : 400,
   });
 
@@ -74,48 +78,37 @@ const AdminPanel: React.FC = () => {
           </li>
         </ul>
       </nav>
-
-      {/* Contenido principal */}
       <main style={mainStyle}>
         {menu === 'alumnos' && (
           <>
-            <h3 style={{ marginTop: 0, color: '#343a40', fontSize: '1.8rem' }}>Gestión de Alumnos</h3>
-            <div style={{ marginBottom: '2rem' }}><FormularioAlumno /></div>
             <ListaAlumnos />
           </>
         )}
 
-   {/*     {menu === 'docentes' && (
+        {menu === 'docentes' && (
           <>
-            <h3 style={{ marginTop: 0, color: '#343a40', fontSize: '1.8rem' }}>Gestión de Docentes</h3>
-            <div style={{ marginBottom: '2rem' }}><FormularioDocente /></div>
             <ListaDocentes />
           </>
         )}
 
         {menu === 'aulas' && (
           <>
-            <h3 style={{ marginTop: 0, color: '#343a40', fontSize: '1.8rem' }}>Gestión de Aulas</h3>
-            <div style={{ marginBottom: '2rem' }}><FormularioAula /></div>
+
             <ListaAulas />
           </>
         )}
 
         {menu === 'cursos' && (
           <>
-            <h3 style={{ marginTop: 0, color: '#343a40', fontSize: '1.8rem' }}>Gestión de Cursos</h3>
-            <div style={{ marginBottom: '2rem' }}><FormularioCurso /></div>
             <ListaCursos />
           </>
         )}
 
         {menu === 'notas' && (
           <>
-            <h3 style={{ marginTop: 0, color: '#343a40', fontSize: '1.8rem' }}>Gestión de Notas</h3>
-        Sidebar        <div style={{ marginBottom: '2rem' }}><FormularioNota /></div>
-            <ListaNotas />  
+            <ListaNotas />
           </>
-        )}*/} 
+        )}
       </main>
     </div>
   );

@@ -29,3 +29,25 @@ export const ELIMINAR_ALUMNO = gql`
     eliminarAlumno(id: $id)
   }
 `;
+
+
+export const ELIMINAR_DOCENTE = gql`
+  mutation EliminarDocente($id: ID!) {
+    eliminarDocente(id: $id)
+  }
+`;
+export const ELIMINAR_AULA = gql`
+  mutation EliminarAula($id: ID!) {
+    eliminarAula(id: $id)
+  }
+`;
+export const ELIMINAR_NOTA = gql`
+  mutation EliminarNota($id: ID!) {
+    eliminarNota(id: $id)
+  }
+`;
+export const ELIMINAR_CURSO = gql`
+  mutation EliminarCurso($id: ID!) {
+    eliminarCurso(id: $id)
+  }
+`;

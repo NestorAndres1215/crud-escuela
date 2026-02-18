@@ -45,12 +45,15 @@ export const OBTENER_CURSOS = gql`
 
 export const OBTENER_NOTAS = gql`
   query ObtenerNotas {
-    obtenerNotas {
-      id
-      alumno
-      curso
-      docente
-      nota
-    }
+      obtenerNotas {
+    practicas
+    parcial
+    id
+    examenFinal
+    docente
+    curso
+    aula
+    alumno
+  }
   }
 `;
