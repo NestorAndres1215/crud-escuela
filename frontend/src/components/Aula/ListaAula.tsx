@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client/react';
+import { useNavigate } from 'react-router-dom';
 
 import { OBTENER_AULAS } from '../../graphql/queries';
 import { ELIMINAR_AULA } from '../../graphql/mutations';
@@ -14,6 +15,8 @@ import Button from '../ui/Boton';
 const ITEMS_POR_PAGINA = 5;
 
 const ListaAulas: React.FC = () => {
+  const navigate = useNavigate();
+
   const { loading, error, data, refetch } =
     useQuery<{ obtenerAula: Aula[] }>(OBTENER_AULAS);
 
@@ -25,6 +28,7 @@ const ListaAulas: React.FC = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   const handleEliminar = async (id: string) => {
+    if (!window.confirm('¿Estás seguro de eliminar esta aula?')) return;
     await eliminarAula({ variables: { id } });
     refetch();
   };
@@ -44,6 +48,13 @@ const ListaAulas: React.FC = () => {
     <div>
       <Titulo texto="Gestión de Aulas" nivel={1} />
 
+      <div style={{ marginBottom: '20px', textAlign: 'right' }}>
+        <Button variant="primary" onClick={() => navigate('/aulas/nuevo')}>
+          <i className="bi bi-building" style={{ marginRight: '6px' }}></i>
+          Registrar Aula
+        </Button>
+      </div>
+
       <Busqueda
         value={busqueda}
         onChange={(value) => {
@@ -55,16 +66,27 @@ const ListaAulas: React.FC = () => {
       <Tabla headers={['Aula', 'Aforo', 'Acciones']}>
         {aulasPaginadas.map((aula) => (
           <tr key={aula.id}>
-            <td>{aula.aula}</td>
-            <td>{aula.aforo}</td>
-            <td>
-              <Button
-                variant="danger"
-                size="sm"
-                onClick={() => handleEliminar(aula.id)}
-              >
-                Eliminar
-              </Button>
+            <td style={{ padding: '10px' }}>{aula.aula}</td>
+            <td style={{ padding: '10px' }}>{aula.aforo}</td>
+            <td style={{ padding: '10px' }}>
+              <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+                <Button
+                  variant="warning"
+                  onClick={() => navigate(`/aulas/editar/${aula.id}`)}
+                >
+                  <i className="bi bi-pencil-square me-2"></i>
+                  Editar
+                </Button>
+
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={() => handleEliminar(aula.id)}
+                >
+                  <i className="bi bi-trash" style={{ marginRight: '5px' }}></i>
+                  Eliminar
+                </Button>
+              </div>
             </td>
           </tr>
         ))}

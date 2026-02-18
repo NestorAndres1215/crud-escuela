@@ -8,6 +8,9 @@ import ActualizarAlumno from '../Alumno/ActualizarAlumno';
 import ListaDocentes from '../Docente/ListaDocentes';
 import ActualizarDocente from '../Docente/ActualizarDocente';
 import FormularioDocente from '../Docente/FormularioDocente';
+import ListaAulas from '../Aula/ListaAula';
+import FormularioAula from '../Aula/FormularioAula';
+import ActualizarAula from '../Aula/ActualizarAula';
 
 const AdminPanel: React.FC = () => {
   return (
@@ -68,9 +71,48 @@ const AdminPanel: React.FC = () => {
           Docente
         </NavLink>
 
+        <NavLink
+          to="/aulas"
+          style={({ isActive }) => ({
+            color: 'white',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.5rem',
+            backgroundColor: isActive ? '#062663' : 'transparent',
+            textDecoration: 'none',
+            fontWeight: isActive ? 'bold' : 'normal'
+          })}
+        >
+          Aulas
+        </NavLink>
+        <NavLink
+          to="/cursos"
+          style={({ isActive }) => ({
+            color: 'white',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.5rem',
+            backgroundColor: isActive ? '#062663' : 'transparent',
+            textDecoration: 'none',
+            fontWeight: isActive ? 'bold' : 'normal'
+          })}
+        >
+          Cursos
+        </NavLink>
+        <NavLink
+          to="/nota"
+          style={({ isActive }) => ({
+            color: 'white',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.5rem',
+            backgroundColor: isActive ? '#062663' : 'transparent',
+            textDecoration: 'none',
+            fontWeight: isActive ? 'bold' : 'normal'
+          })}
+        >
+          Nota
+        </NavLink>
+
       </aside>
 
-      {/* Contenido */}
       <main style={{
         flex: 1,
         padding: '2rem',
@@ -86,6 +128,9 @@ const AdminPanel: React.FC = () => {
           <Route path="/docentes" element={<ListaDocentes />} />
           <Route path="/docentes/nuevo" element={<FormularioDocente />} />
           <Route path="/docentes/editar/:id" element={<ActualizarDocente />} />
+          <Route path="/aulas" element={<ListaAulas />} />
+          <Route path="/aulas/nuevo" element={<FormularioAula />} />
+          <Route path="/aulas/editar/:id" element={<ActualizarAula />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

@@ -24,6 +24,16 @@ export const CREAR_DOCENTE = gql`
   }
 `;
 
+export const CREAR_AULA = gql`
+  mutation CrearAula($aula: AulaInput!) {
+    crearAula(aula: $aula) {
+      id
+      aula
+      aforo
+    }
+  }
+`;
+
 
 export const ACTUALIZAR_ALUMNO = gql`
   mutation ActualizarAlumno($id: ID!, $alumno: AlumnoInput!) {
@@ -44,6 +54,16 @@ export const ACTUALIZAR_DOCENTE = gql`
       apellido
       correo
       telefono
+    }
+  }
+`;
+
+export const ACTUALIZAR_AULA = gql`
+  mutation ActualizarAula($id: ID!, $aula: AulaInput!) {
+    actualizarAula(id: $id, aula: $aula) {
+      id
+      aula
+      aforo
     }
   }
 `;
