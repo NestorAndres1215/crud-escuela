@@ -6,6 +6,8 @@ interface TablaProps {
 }
 
 const Tabla: React.FC<TablaProps> = ({ headers, children }) => {
+  const isEmpty = !children || React.Children.count(children) === 0;
+
   return (
     <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
       <table
@@ -34,7 +36,28 @@ const Tabla: React.FC<TablaProps> = ({ headers, children }) => {
             ))}
           </tr>
         </thead>
-        <tbody>{children}</tbody>
+
+        <tbody>
+          {isEmpty ? (
+            <tr>
+              <td
+                colSpan={headers.length}
+                style={{
+                  textAlign: 'center',
+                  padding: '30px',
+                  color: '#888',
+                }}
+              >
+                <div style={{ fontSize: '40px' }}>📭</div>
+                <div style={{ marginTop: '8px' }}>
+                  No hay datos disponibles
+                </div>
+              </td>
+            </tr>
+          ) : (
+            children
+          )}
+        </tbody>
       </table>
     </div>
   );
