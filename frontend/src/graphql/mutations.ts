@@ -42,7 +42,20 @@ export const CREAR_CURSOS = gql`
     }
   }
 `;
-
+export const CREAR_NOTAS = gql`
+  mutation CrearNota($nota: NotaInput!) {
+    crearNota(nota: $nota) {
+    practicas
+    parcial
+    id
+    examenFinal
+    aula
+    alumno
+    curso
+    docente
+    }
+  }
+`;
 export const ACTUALIZAR_ALUMNO = gql`
   mutation ActualizarAlumno($id: ID!, $alumno: AlumnoInput!) {
     actualizarAlumno(id: $id, alumno: $alumno) {
@@ -77,7 +90,7 @@ export const ACTUALIZAR_AULA = gql`
 `;
 export const ACTUALIZAR_CURSOS = gql`
   mutation ActualizarCurso($id: ID!, $curso: CursoInput!) {
-    actualizarAula(id: $id, curso: $curso) {
+    actualizarCurso(id: $id, curso: $curso) {
       id
       curso
       credito

@@ -79,6 +79,18 @@ export const OBTENER_CURSOS = gql`
   }
 `;
 
+export const OBTENER_CURSOS_POR_ID = gql`
+  query ObtenerCursoPorId($id: ID!) {
+    obtenerCursoPorId(id: $id) {
+  id
+      curso
+      credito
+    }
+  }
+`;
+
+
+
 export const OBTENER_NOTAS = gql`
   query ObtenerNotas {
       obtenerNotas {

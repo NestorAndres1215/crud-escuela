@@ -28,8 +28,11 @@ export interface Curso {
 
 export interface Nota {
   id: string;
-  alumno: string;
-  curso: string;
-  docente: string;
-  nota: number;
+  alumno: Alumno;
+  aula: Aula;
+  curso: Curso;
+  docente: Docente;
+  parcial: number;
+  practicas: number;
+  examenFinal: number;
 }

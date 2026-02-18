@@ -13,6 +13,9 @@ import FormularioAula from '../Aula/FormularioAula';
 import ActualizarAula from '../Aula/ActualizarAula';
 import ListaCursos from '../Curso/ListaCursos';
 import FormularioCurso from '../Curso/FormularioCurso';
+import ActualizarCurso from '../Curso/ActualizarCurso';
+import ListaNotas from '../Nota/ListaNota';
+import FormularioNota from '../Nota/FormularioNota';
 
 const AdminPanel: React.FC = () => {
   return (
@@ -100,7 +103,7 @@ const AdminPanel: React.FC = () => {
           Cursos
         </NavLink>
         <NavLink
-          to="/nota"
+          to="/notas"
           style={({ isActive }) => ({
             color: 'white',
             padding: '0.5rem 1rem',
@@ -135,7 +138,9 @@ const AdminPanel: React.FC = () => {
           <Route path="/aulas/editar/:id" element={<ActualizarAula />} />
           <Route path="/cursos" element={<ListaCursos />} />
           <Route path="/cursos/nuevo" element={<FormularioCurso />} />
-
+          <Route path="/cursos/editar/:id" element={<ActualizarCurso />} />
+          <Route path="/notas" element={<ListaNotas />} />
+           <Route path="/notas/nuevo" element={<FormularioNota />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
